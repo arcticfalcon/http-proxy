@@ -1,0 +1,30 @@
+{
+  "rules": [
+    {
+      "name": "Auth ",
+      "pathMatch": "/login",
+      "limit": 1,
+      "window": "1s",
+      "burst": 5
+    },
+    {
+      "name": "Basic",
+      "pathMatch": "/(\\w+)",
+      "ipMatch": null,
+      "cidrMatch": "127.0.0.1/8",
+      "httpMethodMatch": [
+        "GET",
+        "POST"
+      ],
+      "limit": 100,
+      "window": "1s",
+      "burst": 50
+    },
+    {
+      "name": "All",
+      "limit": 10,
+      "window": "1s",
+      "burst": 5
+    }
+  ]
+}

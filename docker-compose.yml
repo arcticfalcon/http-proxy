@@ -1,0 +1,31 @@
+version: '2'
+services:
+  fluentd:
+    build: ./fluentd
+    ports:
+    - "24224:24224"
+    - "24224:24224/udp"
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    links:
+      - "elasticsearch"
+  redis:
+    image: redis:5-alpine
+    ports:
+     - "6379:6379"
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.1.1
+    ports:
+     - "9200:9200"
+     - "9300:9300"
+    environment:
+#      http.host: "0.0.0.0"
+#      transport.host: "127.0.0.1"
+      discovery.type: "single-node"
+      xpack.security.enabled: "false"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.1.1
+    ports:
+     - "5601:5601"
+    links:
+      - "elasticsearch"
