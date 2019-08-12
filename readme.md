@@ -8,3 +8,10 @@
 1. Run `bombardier -c 100 -d 15s -l localhost:12345/sites/MLA/categories`
 1. Maybe edit `config.json` and run more requests
 1. Check kibana logs on http://localhost:5601
+
+
+### Improvements
+* Status endpoint with stats from elasticsearch 
+* Configuration API endpoints
+* Local/external cache synchronization 
+* Rules: public/authenticated filter, consumer tiers
